@@ -3,6 +3,12 @@ const addButton = document.querySelector("#add");
 const listEl = document.querySelector("#list");
 const countEl = document.querySelector("#count");
 
+const allButton = document.querySelector("#all");
+const activeButton = document.querySelector("#active");
+const doneButton = document.querySelector("#done");
+
+let currentFilter = "all";
+
 type Todo = {
   id: string;
   element: string;
@@ -45,24 +51,47 @@ const renderTodo = (todo: Todo) => {
 
   checkboxEl.addEventListener("change", () => {
     todo.done = checkboxEl.checked;
+    renderTodos();
     updateCount();
     localStorage.setItem("todos", JSON.stringify(todos));
   });
 
   deleteButton.addEventListener("click", () => {
-    liEl.remove();
-
     todos = todos.filter((item) => {
       return item.id !== todo.id;
     });
+    renderTodos();
     updateCount();
     localStorage.setItem("todos", JSON.stringify(todos));
   });
 };
 
-todos.forEach((todo) => {
-  renderTodo(todo);
-});
+const renderTodos = () => {
+  if (listEl) {
+    listEl.textContent = "";
+  }
+  if (currentFilter === "all") {
+    todos.forEach((todo) => {
+      renderTodo(todo);
+    });
+  } else if (currentFilter === "active") {
+    const activeTodos = todos.filter((item) => {
+      return item.done === false;
+    });
+    activeTodos.forEach((todo) => {
+      renderTodo(todo);
+    });
+  } else {
+    const doneTodos = todos.filter((item) => {
+      return item.done === true;
+    });
+    doneTodos.forEach((todo) => {
+      renderTodo(todo);
+    });
+  }
+};
+
+renderTodos();
 updateCount();
 
 addButton?.addEventListener("click", () => {
@@ -72,11 +101,24 @@ addButton?.addEventListener("click", () => {
     done: false,
   };
   todos.push(newTodo);
-  renderTodo(newTodo);
+  renderTodos();
 
   localStorage.setItem("todos", JSON.stringify(todos));
   updateCount();
   if (inputEl) {
     inputEl.value = "";
   }
+});
+
+allButton?.addEventListener("click", () => {
+  currentFilter = "all";
+  renderTodos();
+});
+activeButton?.addEventListener("click", () => {
+  currentFilter = "active";
+  renderTodos();
+});
+doneButton?.addEventListener("click", () => {
+  currentFilter = "done";
+  renderTodos();
 });
