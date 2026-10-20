@@ -12,6 +12,7 @@ I forget this stuff when I am not using it, so this is where I come back and loo
 |---|---------|----------------|
 | 01 | [Workout Timer](01-workout-timer) | DOM lookup, events, a single piece of state, `setInterval` / `clearInterval`, guarding against double starts, formatting seconds as `MM:SS` |
 | 02 | [Todo App](02-todo) | `input.value`, arrays of objects, `type`, `push` / `filter` / `map` / `reduce`, building DOM nodes, checkboxes, removing nodes, `localStorage` with `JSON.stringify` / `JSON.parse` |
+| 03 | [GitHub User Search](03-api-app) | `fetch`, `async` / `await`, `response.ok` and status codes, `try` / `catch`, a loading state, typing JSON as `unknown` and narrowing it with a type guard, `??` for `null`, `replaceChildren` |
 
 ## Where to look something up
 
@@ -26,6 +27,10 @@ I forget this stuff when I am not using it, so this is where I come back and loo
 | remove one item from an array | 02 | `main.ts` |
 | count matching items | 02 | `main.ts` |
 | save state so it survives a reload | 02 | `main.ts` |
+| call an API and wait for the result | 03 | `main.ts` |
+| show "not found" vs. a network error | 03 | `main.ts` |
+| check that JSON has the shape I expect | 03 | `main.ts` |
+| clear an element and rebuild its children | 03 | `main.ts` |
 
 ## Running one
 
