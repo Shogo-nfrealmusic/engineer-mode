@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(**/*.ts)",
+      "Edit(**/*.tsx)",
+      "Edit(**/*.js)",
+      "Edit(**/*.html)",
+      "Edit(**/*.css)",
+      "Edit(**/*.json)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/README.md)"
+    ]
+  }
+}
