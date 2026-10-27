@@ -4,11 +4,26 @@
 
 ## 現在地
 
-- **Project 3: GitHub User Search** — Day 2 まで完了。**次は Day 3（既存コードに仕様を1つ追加）**
-- Day 3 は `03-api-app-day2/` をコピーした `03-api-app-day3/` で行う
-- その次: Phase 2（React）。Phase 1 で作ったものを React で作り直す
+- **Project 3: GitHub User Search** — Day 3 まで完了。Phase 1 はここで終わり
+- **次は Phase 2（React）**。Phase 1 で作ったものを React で作り直す
 
 ## 記録
+
+### 2026-10-28  Project 3  Day 3
+- 足した仕様: プロフィールの下に公開リポジトリを5件表示（更新が新しい順、名前とスター数、0件なら `No repositories`、プロフィール取得に失敗したら出さない）
+- 自力で書けた（前回書けなかったもののうち）: `unknown`・`Record` を使った型ガード（`isGithubRepo`）/ `createElement()`・`textContent`・`appendChild()` / テンプレートリテラル / `?sort=updated&per_page=5` の URL の組み立て
+- 自力で書けなかった（ヒント・答えをもらった）:
+  - `type` と型ガードの違い（型はコンパイル時だけで消える。型ガードは実行時に中身を確かめる）
+  - リポジトリの `name`・`stargazers_count` に `| null` は要らない（型と型ガードはそろえる）
+  - 2本目の `fetch` の置き場所（`if (profile)` の外、`try` の中）→ **答えをもらった**
+  - 配列レスポンスの確認 `Array.isArray()` + `every(isGithubRepo)` → **答えをもらった**。`json()` に型を書くだけでは確かめたことにならない
+  - アロー関数でオブジェクトを返すときは `=> ({ ... })`
+  - `.js` を作るコマンド `npx tsc --watch`（`--noEmit` はチェックだけでファイルを作らない）→ **答えをもらった**
+  - 何も出ないときは開発者ツールの Console を見る
+- 説明できた（レビュー）: narrowing の流れ / 存在しないユーザーで2本目の `fetch` が動かない理由 / 空配列の `forEach` は1回も動かない
+- 指摘: `responseRepo` と `reposData` の単数・複数と並びがそろっていない。`response`・`data` は `userResponse`・`userData` に
+- 残した問題（仕様の外）: リポジトリの取得だけ失敗すると、`catch` でプロフィールまで `Network error` に置き換わる
+- 次にやること: Phase 2（React）
 
 ### 2026-10-21  Project 3  Day 2
 - 作ったもの: 前日のコードを見ずに、環境構築からゼロで再実装

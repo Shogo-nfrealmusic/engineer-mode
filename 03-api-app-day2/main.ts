@@ -36,20 +36,20 @@ button?.addEventListener("click", async () => {
   try {
     const response = await fetch(`https://api.github.com/users/${username}`);
     if (!response.ok) {
-       if (profile) {
-         profile.textContent =
-           response.status === 404 ? "User not found" : "API error";
-       }
-       return;
-     }
+      if (profile) {
+        profile.textContent =
+          response.status === 404 ? "User not found" : "API error";
+      }
+      return;
+    }
 
-     const data: unknown = await response.json();
+    const data: unknown = await response.json();
 
-     if(!isGithubUser(data)){
-        throw new Error("Invalid API response");
-     }
+    if (!isGithubUser(data)) {
+      throw new Error("Invalid API response");
+    }
 
-     if (profile) {
+    if (profile) {
       profile.replaceChildren();
 
       const h2 = document.createElement("h2");
@@ -78,6 +78,4 @@ button?.addEventListener("click", async () => {
     }
     console.error(error);
   }
-  }
-
 });
